@@ -40,25 +40,6 @@ class Main extends Component {
         }
     }
     componentDidMount(){
-        /* axios.get('http://localhost:8081/listIP', {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
-            params: {
-                filepath: "./auth.log"
-            }
-          })
-        .then(function (response) {
-            console.log(response.data);
-            if(response.data){
-                getLocation(response.data, (result) => {
-                    this.setState({markers : result});
-                    console.log(result);
-                });
-            }
-        })
-        .catch(function (error) {
-        }); */
         const lst = ["41.238.236.189","123.21.164.250","14.162.181.33","79.129.223.158",
             "117.241.203.56","51.254.118.92","14.232.23.94","159.192.123.199","210.212.215.165",
             "218.108.137.106","113.215.220.206","193.201.224.241","51.254.208.16","188.17.29.104",
