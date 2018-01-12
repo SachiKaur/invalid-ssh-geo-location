@@ -1,22 +1,8 @@
 import React, { Component } from 'react'
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import axios from "axios";
 
-var fs = require('fs');
 var request = require('request');
-
-function getIP(path){
-    const text = fs.readFileSync(path, 'utf8');
-    const lst = [];
-    text.split(/\r?\n/).forEach((line) => {
-        if (line.includes('Invalid')) {
-            var match = line.match(/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/g);
-            if (!lst.includes(match[0])){
-                lst.push(match[0]);
-            }
-        }
-    });
-    return lst
-}
 
 function getLocation(lst, callback){
     function makeRequest(lst, i, result, cb) {
@@ -54,7 +40,31 @@ class Main extends Component {
         }
     }
     componentDidMount(){
-        const lst = getIP('/var/log/auth.log');
+        /* axios.get('http://localhost:8081/listIP', {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+            params: {
+                filepath: "./auth.log"
+            }
+          })
+        .then(function (response) {
+            console.log(response.data);
+            if(response.data){
+                getLocation(response.data, (result) => {
+                    this.setState({markers : result});
+                    console.log(result);
+                });
+            }
+        })
+        .catch(function (error) {
+        }); */
+        const lst = ["41.238.236.189","123.21.164.250","14.162.181.33","79.129.223.158",
+            "117.241.203.56","51.254.118.92","14.232.23.94","159.192.123.199","210.212.215.165",
+            "218.108.137.106","113.215.220.206","193.201.224.241","51.254.208.16","188.17.29.104",
+            "193.201.224.158","151.80.40.4","202.29.240.157", "219.245.18.189","222.176.192.88",
+            "170.0.141.126","14.231.245.249","223.84.128.24","195.154.39.130","103.89.89.172",
+            "89.108.86.26","5.188.10.156"]
         getLocation(lst, (result) => {
             this.setState({markers : result});
             console.log(result);
